@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <section>
+    <AddEmployee @add-employee="handleAddEmployee"/>
+  </section>
+  <section>
+    <EmployeeInfo :employees="employees"/>
+  </section>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EmployeeInfo from "./components/EmployeeInfo/EmployeeInfo.vue";
+import AddEmployee from "./components/EmployeeInfo/AddEmployee.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    EmployeeInfo,
+    AddEmployee,
+  },
+  data() {
+    return {
+      employees: [],
+    };
+  },
+  methods: {
+    handleAddEmployee(data) {
+      this.employees = [...this.employees, data]
+    }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
 }
 </style>
